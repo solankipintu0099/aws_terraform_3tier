@@ -38,3 +38,18 @@ module "security_group" {
   source = "../module/security_group"
   vpc_id = module.vpc1.vpc_id
 }
+    
+# create iam role
+
+module "ecs_task" {
+  source            = "../module/ecs_task"
+  project_name      = module.vpc1.project_name
+  
+}
+
+# create acm 
+module "acm" {
+  source            = "../module/acm"
+  domain_name       = var.domain_name
+  alternative_name  = var.alternative_name
+}
